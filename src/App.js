@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import DisplayMap from './components/DisplayMap.js';
 import BaseLocation from './components/BaseLocation.js';
+import Search from './components/Search.js'
 
 function App() {
 	const [lat, setLat] = useState('43.651070')
 	const [lng, setLng] = useState('-79.347015')
+	const [markers, setMarkers] = useState([])
 
-	let markers = []
-
-
+	// let markers = []
 	const setCenter = (lat, lng) => {
 		setLat(lat)
 		setLng(lng)
@@ -37,6 +37,9 @@ function App() {
 		markers.push(marker)
 	}
 
+	const clearMarkers = () => {
+		
+	}
 
 
 
@@ -44,7 +47,7 @@ function App() {
 
 		<div>
 				<div>
-					Search
+					<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} />
 				</div>
 				<div>
 					<BaseLocation setCenter={setCenter} setMarker={addMarker} />
@@ -57,6 +60,7 @@ function App() {
 			tileLayer={'map'}
 			zoom={11}
 			apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
+			
 			
 			/>
 		
