@@ -45,25 +45,25 @@ function App() {
 
   return (
 
-		<div>
-				<div>
-					<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} />
-				</div>
-				<div>
-					<BaseLocation setCenter={setCenter} setMarker={addMarker} />
-				</div>
-			
-			<DisplayMap 
-			height='100vh'
-			width='100%'
-			center={[lat, lng]}
-			tileLayer={'map'}
-			zoom={11}
-			apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
-			
-			
-			/>
-		
+		<div className='wrapper'>
+			<div className='contentFlex'>
+				<section className='search'>
+					<div>
+						<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} />
+					</div>
+					<div className='baseLocation'>
+						<BaseLocation setCenter={setCenter} setMarker={addMarker} />
+					</div>
+				</section>
+				<section className='map'>
+					<DisplayMap 
+					center={[lat, lng]}
+					tileLayer={'map'}
+					zoom={11}
+					apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
+					/>
+				</section>
+			</div>
 		</div>
 		
    

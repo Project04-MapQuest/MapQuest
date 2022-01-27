@@ -93,7 +93,7 @@ const Search = ( { setCenter, addMarker, clearMarkers } ) => {
 
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form className='searchBar' onSubmit={handleSubmit}>
 			<label htmlFor="query">Search:</label>
 			<input 
 			type="search" 
