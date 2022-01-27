@@ -18,7 +18,6 @@ const DisplayMap = ({ height, width, center, tileLayer, zoom, apiKey }) => {
 	
 	return (
 		<div id='map' style={{ width, height }}>
-			<p>Loading...</p>
 		</div>
 	)
 }
