@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BaseLocation = ( { setCenter, setMarker }) => {
+const BaseLocation = ({ setCenter, setMarker }) => {
 
 	const findMe = () => {
 		if(!navigator.geolocation) {
@@ -15,7 +15,7 @@ const BaseLocation = ( { setCenter, setMarker }) => {
 					setCenter(latitude, longitude)
 				}
 				if(setMarker) {
-						setMarker(latitude, longitude, 'My location', `lat: ${latitude}, lng: ${longitude}`)
+						setMarker(latitude, longitude, 'Base Location')
 				}
 			},
 			(error) => {

@@ -2,6 +2,9 @@ import { useState } from 'react';
 import DisplayMap from './components/DisplayMap.js';
 import BaseLocation from './components/BaseLocation.js';
 import Search from './components/Search.js'
+// import Direction from './Direction.js'
+// import DirectionLayer from './components/DirectionLayer.js';
+
 
 function App() {
 	const [lat, setLat] = useState('43.651070')
@@ -12,6 +15,7 @@ function App() {
 	const setCenter = (lat, lng) => {
 		setLat(lat)
 		setLng(lng)
+		console.log(lat, lng);
 
 		window.L.mapquest.Map.getMap('map').setView(new window.L.LatLng(lat, lng), 12)
 	} 
@@ -34,21 +38,35 @@ function App() {
 
 		.addTo(window.L.mapquest.Map.getMap('map'))
 
-		markers.push(marker)
+		const copyMarkers = markers.slice(0)
+		copyMarkers.splice(0,0, marker)
+		setMarkers(copyMarkers)
+
+		// markers.push(marker)
 	}
 
+	
 	const clearMarkers = () => {
+		markers.forEach(marker => {
+			window.L.mapquest.Map.getMap('map').removeLayer(marker)
+		})
+		setMarkers([])
+	}
+
+	const baseLocationName = () => {
 		
 	}
-
-
 
   return (
 
 		<div>
 				<div>
-					<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} />
+					<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} lat={lat} lng={lng}/>
+
 				</div>
+				{/* <div>
+					<DirectionsLayers setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} lat={lat} lng={lng} />
+				</div> */}
 				<div>
 					<BaseLocation setCenter={setCenter} setMarker={addMarker} />
 				</div>
@@ -60,13 +78,8 @@ function App() {
 			tileLayer={'map'}
 			zoom={11}
 			apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
-			
-			
 			/>
-		
 		</div>
-		
-   
   );
 }
 export default App;
