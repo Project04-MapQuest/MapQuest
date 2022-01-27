@@ -5,6 +5,7 @@ import axios from 'axios';
 const Search = ( { setCenter, addMarker, clearMarkers } ) => {
 
 	const [query, setQuery] = useState('')
+	const [listOfPlace,setListOfPlace] = useState([])
 
 		const handleChange = (e) => {
 			setQuery(e.target.value)
@@ -13,15 +14,10 @@ const Search = ( { setCenter, addMarker, clearMarkers } ) => {
 		const handleSubmit = (e) => {
 			e.preventDefault()
 			findLocation()
-			// setQuery(query)
+			clearMarkers()
 		}
 
 		const findLocation = () => {
-			// if(!query.length) return
-
-			// if(clearMarkers) clearMarkers()
-
-
 			axios({
 				url:'https://www.mapquestapi.com/search/v4/place',
 				dataResponse: 'json',
@@ -34,65 +30,33 @@ const Search = ( { setCenter, addMarker, clearMarkers } ) => {
 				q: query
 				}
 			}).then((res) => {
-				console.log(res);
-				setQuery(res.data.results)
-
-				// setCenter(addMarker)
-				// addMarker(res.data.results)
-				// addMarker(lat, lng)
-				// setCenter(lat, lng)
-				// const { street, adminArea5, adminArea3, latlng } = location
-				// const { latLng } = location
-
-				// setCenter(latLng.lat, latLng.lng)
-				// addMarker (
-				// 	latLng.lat,
-				// 	latLng.lng,
-				// 	// `lat: ${latLng.lat}, lng: ${latLng.lng}`,
-				// 	// `${street || ''}, ${adminArea5}, ${adminArea3}`
-				// )
-			})
-			
-
-			
-
-
-			// window.placeSearch({
-			// 	key: 'AJEFdd4JGrnslno6l848Ejs3b6WAMJjq',
-			// 	container: 'query',
-			// 	useDeviceLocation: true,
-			// 	collection: [
-			// 		'poi',
-			// 		'airport',
-			// 		'address',
-			// 		'adminArea',
-			// 	]
-			// })
-
-			// window.L.mapquest.geocoding().geocode(query, 
-			// 	(error, response) => {
-			// 		console.log(response);
-			// 		response.results.forEach((result, res_index) => {
-			// 			result.locations.forEach(location => {
-			// 				const { street, adminArea5, adminArea3, latLng } = location
-			// 				if (res_index === 0) {
-			// 					setCenter(latLng.lat, latLng.lng) 
-			// 				}
-							
-			// 				addMarker (
-			// 					latLng.lat,
-			// 					latLng.lng,
-			// 					`lat: ${latLng.lat}, lng: ${latLng.lng}`,
-			// 					`${street || ''}, ${adminArea5}, ${adminArea3}`
-			// 				)
-			// 			})
-			// 		})
-			// 	}
-			// )
-		}
-
+				const listOfPlace = res.data.results;
+				console.log(listOfPlace)
+				setListOfPlace(listOfPlace)
+				listOfPlace.forEach( (data) => {
+					const listOfPlaces = data.place.geometry.coordinates;
+					addMarker(listOfPlaces[1], listOfPlaces[0])
+					
+				})
+	})}
+	
+	// const selectedPlace = []
+	const getData = (e,placeID) => {
+		 listOfPlace.filter( (data)=>{
+			 if(data.id === placeID){
+				 const { street, city, stateCode } = data.place.properties
+				 const placeAddress = `${street}, ${city}, ${stateCode}`
+				 console.log(placeAddress)
+			 }
+		 })
+	}
+	
+	// const bas = listOfPlace.length / 2;
+	// const high = listOfPlace[5];
+	// console.log(high);
 
 	return (
+<<<<<<< HEAD
 		<form className='searchBar' onSubmit={handleSubmit}>
 			<label htmlFor="query">Search:</label>
 			<input 
@@ -103,6 +67,36 @@ const Search = ( { setCenter, addMarker, clearMarkers } ) => {
 			/>
 			<button type='submit' disabled={!query.length}>Search</button>
 		</form>
+=======
+		<section>
+			<form onSubmit={handleSubmit}>
+				<label htmlFor="query">Search:</label>
+				<input 
+				type="search" 
+				id='query'
+				defaultValue={query}
+				onChange={handleChange}
+				/>
+				<button type='submit' disabled={!query.length}>Search</button>
+			</form>
+			<div>
+				<ul>
+				{
+					listOfPlace.map( (place) => {
+						return(
+							<li key={place.id} >
+								<h3>Name:{place.name}</h3>
+								<p>{place.place.properties.street}, {place.place.properties.city}, {place.place.properties.stateCode}</p>
+								<button onClick={(e)=>getData(e,place.id)}>Get Direction</button>
+							</li>
+						)
+					})
+					
+				}
+				</ul>
+			</div>
+		</section>
+>>>>>>> c953d90bb4b0ba857603f4e430f68c56dbfbb68a
 	)
 }
 
