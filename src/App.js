@@ -33,8 +33,6 @@ function App() {
 		)
 
 		.addTo(window.L.mapquest.Map.getMap('map'))
-
-		markers.push(marker)
 	}
 
 	const clearMarkers = () => {
@@ -44,15 +42,10 @@ function App() {
 
 
   return (
-
+	<section>
 		<div>
-				<div>
-					<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} />
-				</div>
-				<div>
-					<BaseLocation setCenter={setCenter} setMarker={addMarker} />
-				</div>
-			
+			<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} clearMarkers={clearMarkers} /> 
+			<BaseLocation setCenter={setCenter} setMarker={addMarker} />
 			<DisplayMap 
 			height='100vh'
 			width='100%'
@@ -60,12 +53,12 @@ function App() {
 			tileLayer={'map'}
 			zoom={11}
 			apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
-			
-			
 			/>
+			{/* <Direction /> */}
 		
 		</div>
 		
+	</section>
    
   );
 }
