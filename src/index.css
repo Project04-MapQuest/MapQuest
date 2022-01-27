@@ -15,6 +15,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Red Rose', cursive;
 }
 
 code {
@@ -27,8 +28,7 @@ html {
 }
 
 .wrapper {
-  width:  95%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
@@ -47,6 +47,7 @@ html {
 
 .search {
   width: 30%;
+  text-align: center;
 }
 
 .searchBar label {
@@ -57,11 +58,59 @@ html {
   width: 55%;
 }
 
-.baseLocation {
-  margin-top: 1rem;
+.searchBar button {
+  padding: 10px;
 }
 
+.baseLocation {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 
+.baseLocation button {
+  padding: .5rem;
+}
 
+h1 {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
 
+h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
 
+ul {
+  padding: 0;
+}
+
+ul p {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+button {
+  border-radius: 15px;
+  padding: 5px;
+  font-family: 'Red Rose', cursive;
+  border: none;
+  background-color: #5bc5ff;
+  cursor: pointer;
+}
+
+.directionsButton {
+  padding: 10px;
+}
+
+input {
+  border-radius: 15px;
+  height: 2.3rem;
+  font-family: 'Red Rose', cursive;
+}
+
+li {
+  list-style-type: none;
+  border: solid;
+}

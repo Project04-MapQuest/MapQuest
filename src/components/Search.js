@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios'; 
+import { FaSearch, FaDirections } from "react-icons/fa";
+
 
 
 const Search = ( { setCenter, addMarker, clearMarkers } ) => {
@@ -56,28 +58,18 @@ const Search = ( { setCenter, addMarker, clearMarkers } ) => {
 	// console.log(high);
 
 	return (
-<<<<<<< HEAD
-		<form className='searchBar' onSubmit={handleSubmit}>
-			<label htmlFor="query">Search:</label>
-			<input 
-			type="search" 
-			id='query'
-			defaultValue={query}
-			onChange={handleChange}
-			/>
-			<button type='submit' disabled={!query.length}>Search</button>
-		</form>
-=======
+
 		<section>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor="query">Search:</label>
+			<form className='searchBar' onSubmit={handleSubmit}>
+				<label htmlFor="query"></label>
 				<input 
 				type="search" 
 				id='query'
+				placeholder='Search...'
 				defaultValue={query}
 				onChange={handleChange}
 				/>
-				<button type='submit' disabled={!query.length}>Search</button>
+				<button type='submit' disabled={!query.length}><FaSearch /></button>
 			</form>
 			<div>
 				<ul>
@@ -85,9 +77,9 @@ const Search = ( { setCenter, addMarker, clearMarkers } ) => {
 					listOfPlace.map( (place) => {
 						return(
 							<li key={place.id} >
-								<h3>Name:{place.name}</h3>
+								<h3>{place.name}</h3>
 								<p>{place.place.properties.street}, {place.place.properties.city}, {place.place.properties.stateCode}</p>
-								<button onClick={(e)=>getData(e,place.id)}>Get Direction</button>
+								<button className='directionsButton' onClick={(e)=>getData(e,place.id)}><FaDirections /></button>
 							</li>
 						)
 					})
@@ -96,7 +88,6 @@ const Search = ( { setCenter, addMarker, clearMarkers } ) => {
 				</ul>
 			</div>
 		</section>
->>>>>>> c953d90bb4b0ba857603f4e430f68c56dbfbb68a
 	)
 }
 

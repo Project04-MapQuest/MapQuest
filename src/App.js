@@ -41,47 +41,30 @@ function App() {
 
 
 
-  return (
-<<<<<<< HEAD
+	return (
 
-		<div className='wrapper'>
-			<div className='contentFlex'>
-				<section className='search'>
-					<div>
-						<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} />
-					</div>
+        <div className='wrapper'>
+            <div className='contentFlex'>		
+                <section className='search'>
+				<h1>shopper mapper</h1>
 					<div className='baseLocation'>
-						<BaseLocation setCenter={setCenter} setMarker={addMarker} />
-					</div>
-				</section>
-				<section className='map'>
-					<DisplayMap 
-					center={[lat, lng]}
-					tileLayer={'map'}
-					zoom={11}
-					apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
-					/>
-				</section>
-			</div>
-=======
-	<section>
-		<div>
-			<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} clearMarkers={clearMarkers} /> 
-			<BaseLocation setCenter={setCenter} setMarker={addMarker} />
-			<DisplayMap 
-			height='100vh'
-			width='100%'
-			center={[lat, lng]}
-			tileLayer={'map'}
-			zoom={11}
-			apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
-			/>
-			{/* <Direction /> */}
-		
->>>>>>> c953d90bb4b0ba857603f4e430f68c56dbfbb68a
-		</div>
-		
-	</section>
+                        <BaseLocation setCenter={setCenter} setMarker={addMarker} />
+                    </div>
+                    <div>
+                        <Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} />
+                    </div>
+                </section>
+                <section className='map'>
+                    <DisplayMap 
+                    center={[lat, lng]}
+                    tileLayer={'map'}
+                    zoom={11}
+                    apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
+                    />
+                </section>
+            </div>
+        </div>
+        
    
   );
 }
