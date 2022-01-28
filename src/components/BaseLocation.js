@@ -1,21 +1,21 @@
 import React from 'react'
 
-const BaseLocation = ( { setCenter, setMarker }) => {
+const BaseLocation = ({ setCenter, setMarker }) => {
 
 	const findMe = () => {
-		if(!navigator.geolocation) {
+		if (!navigator.geolocation) {
 			alert('this navigation geolocation not supported')
 			return
 		}
 
 		navigator.geolocation.getCurrentPosition(
 			(position) => {
-				const {latitude, longitude} = position.coords
-				if(setCenter) {
+				const { latitude, longitude } = position.coords
+				if (setCenter) {
 					setCenter(latitude, longitude)
 				}
-				if(setMarker) {
-						setMarker(latitude, longitude, 'My location', `lat: ${latitude}, lng: ${longitude}`)
+				if (setMarker) {
+					setMarker(latitude, longitude, 'Base Location')
 				}
 			},
 			(error) => {
@@ -28,10 +28,10 @@ const BaseLocation = ( { setCenter, setMarker }) => {
 
 	return (
 		<button
-		type='button'
-		onClick={findMe}
+			type='button'
+			onClick={findMe}
 		>
-			Base Location
+			Current Location
 		</button>
 	)
 }

@@ -2,19 +2,22 @@ import { useState } from 'react';
 import DisplayMap from './components/DisplayMap.js';
 import BaseLocation from './components/BaseLocation.js';
 import Search from './components/Search.js'
+import axios from 'axios';
+
 
 function App() {
-	const [lat, setLat] = useState('43.651070')
-	const [lng, setLng] = useState('-79.347015')
+	const [lat, setLat] = useState("43.6532")
+	const [lng, setLng] = useState("-79.3832")
 	const [markers, setMarkers] = useState([])
+	const [revertAddress, setRevertAddress] = useState("")
 
-	// let markers = []
 	const setCenter = (lat, lng) => {
 		setLat(lat)
 		setLng(lng)
-
+		
 		window.L.mapquest.Map.getMap('map').setView(new window.L.LatLng(lat, lng), 12)
-	} 
+	}
+	console.log(lat, lng);
 
 	const addMarker = (lat, lng, title, subtitle) => {
 		const marker = window.L.mapquest.textMarker(
@@ -31,35 +34,65 @@ function App() {
 				}
 			}
 		)
-
 		.addTo(window.L.mapquest.Map.getMap('map'))
+
+		const copyMarkers = markers.slice(0)
+		copyMarkers.splice(0, 0, marker)
+		setMarkers(copyMarkers)
 	}
+
 
 	const clearMarkers = () => {
-		
+		markers.forEach(marker => {
+			window.L.mapquest.Map.getMap('map').removeLayer(marker)
+		})
+		setMarkers([])
 	}
 
+	const baseLocationName = () => {
+		
+		
+			const KEY = "AJEFdd4JGrnslno6l848Ejs3b6WAMJjq"
+			axios({
+			url: `http://open.mapquestapi.com/geocoding/v1/reverse?key=${KEY}&location=${lat},${lng}&includeRoadMetadata=true&includeNearestIntersection=true`,
+			dataResponse: 'json',
+			method: 'GET',
+			header: {
+				"accept-language": "CA"
+			}}).
+			then((res) => {
+				const convertedAddress = res.data.results[0].locations[0];
+				const { street, adminArea5, adminArea3 } = convertedAddress;
+				const address = `${street}, ${adminArea5}, ${adminArea3}.`
+				console.log(address);
+				console.log(convertedAddress);
+				setRevertAddress(address);
+		 })
+		
+	}
+	console.log(revertAddress);
 
+	return (
 
-  return (
-	<section>
 		<div>
-			<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} clearMarkers={clearMarkers} /> 
-			<BaseLocation setCenter={setCenter} setMarker={addMarker} />
-			<DisplayMap 
-			height='100vh'
-			width='100%'
-			center={[lat, lng]}
-			tileLayer={'map'}
-			zoom={11}
-			apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
+			<div>
+				<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} lat={lat} lng={lng} baseLocationName={baseLocationName}
+				currentAddress={revertAddress}/>
+
+			</div>
+			<div>
+				<BaseLocation setCenter={setCenter} setMarker={addMarker} />
+			</div>
+
+			<DisplayMap
+				height='100vh'
+				width='100%'
+				center={[lat, lng]}
+				tileLayer={'map'}
+				zoom={11}
+				apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
 			/>
-			{/* <Direction /> */}
-		
 		</div>
-		
-	</section>
-   
-  );
+	);
 }
 export default App;
