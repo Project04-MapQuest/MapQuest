@@ -57,9 +57,8 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 			})
 		})
 	}
-
 	const getData = (e, placeID) => {
-		listOfPlace.filter((data) => {
+		listOfPlace.filter((data,placeAddress) => {
 			if (data.id === placeID) {
 				const { street, city, stateCode } = data.place.properties
 				return placeAddress = `${street}, ${city}, ${stateCode}`;
