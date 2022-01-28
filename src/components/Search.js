@@ -63,7 +63,8 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 			if (data.id === placeID) {
 				const { street, city, stateCode } = data.place.properties
 				const placeAddress = `${street}, ${city}, ${stateCode}`
-				console.log('getData', placeAddress)
+				console.log('getData', placeAddress);
+				return;
 			}
 		})
 	}

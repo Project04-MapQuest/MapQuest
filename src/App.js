@@ -59,8 +59,7 @@ function App() {
 			method: 'GET',
 			header: {
 				"accept-language": "CA"
-			}}).
-			then((res) => {
+			}}).then((res) => {
 				const convertedAddress = res.data.results[0].locations[0];
 				const { street, adminArea5, adminArea3 } = convertedAddress;
 				const address = `${street}, ${adminArea5}, ${adminArea3}.`
