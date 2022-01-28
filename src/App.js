@@ -47,7 +47,7 @@ function App() {
 	// clear marker from page
 	const clearMarkers = () => {
 		markers.forEach(marker => {
-			window.L.mapquest.Map.getMap('map').removeLayer(marker)
+			// window.L.mapquest.Map.getMap('map').removeLayer(marker)
 		})
 		setMarkers([])
 	}
@@ -65,8 +65,6 @@ function App() {
 				const convertedAddress = res.data.results[0].locations[0];
 				const { street, adminArea5, adminArea3 } = convertedAddress;
 				const address = `${street}, ${adminArea5}, ${adminArea3}.`
-				console.log(address);
-				console.log(convertedAddress);
 				setRevertAddress(address);
 		 })
 		
