@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // import styling
 import "../App.css"
 
-const DisplayMap = ({ height, width, center, tileLayer, zoom, apiKey}) => {
+const DisplayMap = ({}) => {
 	
 	useEffect(() => {
 		window.L.mapquest.key = apiKey
