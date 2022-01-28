@@ -1,4 +1,7 @@
 import React from 'react'
+// import { BiCurrentLocation } from "react-icons/bi";
+import "../App.css"
+import Search from './Search'
 
 const BaseLocation = ({ setCenter, setMarker }) => {
 
@@ -27,13 +30,16 @@ const BaseLocation = ({ setCenter, setMarker }) => {
 
 
 	return (
-		<button
-		type='button'
-		onClick={findMe}
-		>
-			Base Location
-		</button>
+		<div className='current-location'>
+			<button
+			type='button'
+				onClick={findMe} > Current Location </button>
+		</div>
 	)
 }
 
 export default BaseLocation;
+
+{/* <button
+			type='button'
+				onClick={findMe} > Current Location <BiCurrentLocation  className='current-location-icon'/> </button> */}

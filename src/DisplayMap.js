@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
+import "../App.css"
+
+
 const DisplayMap = ({ height, width, center, tileLayer, zoom, apiKey }) => {
     useEffect(() => {
-        // window.L.mapquest.key = apiKey
-        // const map = window.L.mapquest.map('map', {
-        //     center,
-        //     layers: window.L.mapquest.tileLayer(tileLayer),
-        //     zoom
-        // })
-        // map.addControl(window.L.mapquest.control())
+        window.L.mapquest.key = apiKey
+        const map = window.L.mapquest.map('map', {
+            center,
+            layers: window.L.mapquest.tileLayer(tileLayer),
+            zoom
+        })
+        map.addControl(window.L.mapquest.control())
 
 	// 	const directions = window.L.mapquest.directions()
 	// 	directions.setLayerOptions({
