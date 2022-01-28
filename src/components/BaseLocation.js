@@ -4,7 +4,7 @@ import { BiCurrentLocation } from "react-icons/bi";
 // import styling 
 import "../App.css"
 
-const BaseLocation = ({ setCenter, setMarker }) => {
+const BaseLocation = ({ setCenter, setMarker, displayMapOnSearchClick }) => {
 
 	const findMe = () => {
 		if (!navigator.geolocation) {
@@ -30,7 +30,7 @@ const BaseLocation = ({ setCenter, setMarker }) => {
 		<div className='current-location'>
 			<button
 			type='button'
-			onClick={findMe} > Current Location <BiCurrentLocation  className='current-location-icon'/> </button>
+				onClick={findMe} > Current Location <BiCurrentLocation  className='current-location-icon'/> </button>
 		</div>
 	)
 }

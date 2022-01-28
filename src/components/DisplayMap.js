@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // import styling
 import "../App.css"
 
-const DisplayMap = ({ height, width, center, tileLayer, zoom, apiKey }) => {
+const DisplayMap = ({ height, width, center, tileLayer, zoom, apiKey,showMap }) => {
 	
 	useEffect(() => {
 		window.L.mapquest.key = apiKey
@@ -12,7 +12,7 @@ const DisplayMap = ({ height, width, center, tileLayer, zoom, apiKey }) => {
 			zoom
 		})
 		map.addControl(window.L.mapquest.control())
-	},[apiKey])
+	},[showMap])
 	
 	return (
 		<div id='map' style={{ width, height }}>
