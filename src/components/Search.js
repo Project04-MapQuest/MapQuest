@@ -18,7 +18,7 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		findLocation()
-		getData()
+		// getData()
 	}
 	
 	const getBaseAddress = () => {
@@ -57,15 +57,14 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 			})
 		})
 	}
-	const placeAddress;
-	const getData = (e, placeID) => {
-		listOfPlace.filter((data) => {
-			if (data.id === placeID) {
-				const { street, city, stateCode } = data.place.properties
-				return placeAddress = `${street}, ${city}, ${stateCode}`;
-			}
-		})
-	}
+	// const getData = (e, placeID) => {
+	// 	listOfPlace.forEach((data) => {
+	// 		if (data.id === placeID) {
+	// 			const { street, city, stateCode } = data.place.properties
+	// 			const placeAddress = `${street}, ${city}, ${stateCode}`;
+	// 		}
+	// 	})
+	// }
 
 	const getDirection = (start, end) => {
 
