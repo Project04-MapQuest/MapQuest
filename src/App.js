@@ -14,7 +14,7 @@ function App() {
 	const [lng, setLng] = useState("-79.3832")
 	const [markers, setMarkers] = useState([])
 	const [revertAddress, setRevertAddress] = useState("")
-	const [showMap, setShowMap] = useState(false);
+
 
 	const setCenter = (lat, lng) => {
 		setLat(lat)
@@ -53,14 +53,7 @@ function App() {
 		setMarkers([])
 	}
 
-	const displayMapOnSearchClick = () =>{
-		if(showMap === false){
-			setShowMap(true)
-		}else{
-			setShowMap(false)
-		}
-		console.log(showMap);
-	}
+	
 	// converting lat and lng into single line address.
 	const baseLocationName = () => {
 			const KEY = "AJEFdd4JGrnslno6l848Ejs3b6WAMJjq"
@@ -88,20 +81,19 @@ function App() {
 					<div className='baseLocation'>
 						<BaseLocation setCenter={setCenter} setMarker={addMarker}  />
                     </div>
+					
                     <div>
                         <Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} lat={lat} lng={lng} baseLocationName={baseLocationName}
 						currentAddress={revertAddress}/>
                     </div>
                 </section>
                 <section className='map'>
-					
 					<DisplayMap
 					height='100vh'
 					width='100%'
 					center={[lat, lng]}
 					tileLayer={'map'}
 					zoom={11}
-					showMap={showMap}
 					apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
 					/>
 				
