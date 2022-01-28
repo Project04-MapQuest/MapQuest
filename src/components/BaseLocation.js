@@ -1,4 +1,5 @@
 import React from 'react'
+import { BiCurrentLocation } from "react-icons/bi";
 
 const BaseLocation = ({ setCenter, setMarker }) => {
 
@@ -30,8 +31,8 @@ const BaseLocation = ({ setCenter, setMarker }) => {
 		<button
 			type='button'
 			onClick={findMe}
-		>
-			Current Location
+		> Current Location <BiCurrentLocation />
+
 		</button>
 	)
 }

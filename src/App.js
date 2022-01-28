@@ -72,19 +72,24 @@ function App() {
 	}
 	console.log(revertAddress);
 
+
+
 	return (
 
-		<div>
-			<div>
-				<Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} lat={lat} lng={lng} baseLocationName={baseLocationName}
+        <div className='wrapper'>
+            <div className='contentFlex'>		
+                <section className='search'>
+				<h1>shopper mapper</h1>
+					<div className='baseLocation'>
+                        <BaseLocation setCenter={setCenter} setMarker={addMarker} />
+                    </div>
+                    <div>
+                        <Search setCenter={setCenter} addMarker={addMarker} clearMarkers={clearMarkers} lat={lat} lng={lng} baseLocationName={baseLocationName}
 				currentAddress={revertAddress}/>
-
-			</div>
-			<div>
-				<BaseLocation setCenter={setCenter} setMarker={addMarker} />
-			</div>
-
-			<DisplayMap
+                    </div>
+                </section>
+                <section className='map'>
+                    <DisplayMap
 				height='100vh'
 				width='100%'
 				center={[lat, lng]}
@@ -92,7 +97,11 @@ function App() {
 				zoom={11}
 				apiKey='AJEFdd4JGrnslno6l848Ejs3b6WAMJjq'
 			/>
-		</div>
-	);
+                </section>
+            </div>
+        </div>
+        
+   
+  );
 }
 export default App;

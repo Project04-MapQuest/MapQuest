@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import axios from 'axios';
+
+import axios from 'axios'; 
+import { FaSearch, FaDirections } from "react-icons/fa";
 
 
-const Search = ({ setCenter, addMarker, clearMarkers, baseLocationName, currentAddress }) => {
+
+const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) => {
 
 	const [query, setQuery] = useState('')
 	const [listOfPlace, setListOfPlace] = useState([])
@@ -104,18 +107,20 @@ const Search = ({ setCenter, addMarker, clearMarkers, baseLocationName, currentA
 	return (
 		<div>
 
-			<form onSubmit={handleSubmit}>
+			<form className='searchBar' onSubmit={handleSubmit}>
 				<label htmlFor="query">Search:</label>
 				<input
 					type="search"
 					id='query'
+					placeholder='Search...'
 					defaultValue={query}
 					onChange={handleChange}
 				/>
-				<button type='submit' onClick={getBaseAddress} disabled={!query.length}>Search</button>
+				<button type='submit' onClick={getBaseAddress} disabled={!query.length}><FaSearch /></button>
 				{showError &&
 					<p>Data Not available</p>
 				}
+
 			</form>
 			<div>
 				<ul>
@@ -123,9 +128,10 @@ const Search = ({ setCenter, addMarker, clearMarkers, baseLocationName, currentA
 					listOfPlace.map((place) => {
 						return (
 							<li key={place.id} >
-								<h3>Name:{place.name}</h3>
+								<h3>{place.name}</h3>
 								<p>{place.place.properties.street}, {place.place.properties.city}, {place.place.properties.stateCode}</p>
-								<button onClick={() => getDirection( currentAddress, `${place.place.properties.street}, ${place.place.properties.city}, ${place.place.properties.stateCode}`)}>Get Direction</button>
+	<button className='directionsButton' onClick={() => getDirection(currentAddress, `${place.place.properties.street}, ${place.place.properties.city}, ${place.place.properties.stateCode}`)}><FaDirections /></button>
+
 							</li>
 						)
 					})
