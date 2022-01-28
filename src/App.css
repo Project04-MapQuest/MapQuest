@@ -19,6 +19,7 @@
 .map-logo{
   background-color: #ff9d7f;
   box-shadow: 0 0 7px #ff9d7f;
+  border-radius: 3px;
   /* background-color: #5bc5ff; */
 }
 
@@ -27,6 +28,7 @@
   letter-spacing: 1px;
   background-color: #ff9d7f;
   border: 1px solid #ff9d7f;
+  border-radius: 3px;
   font-size: 1.1rem;
   cursor: pointer;
 }
@@ -101,7 +103,7 @@
 }
 .button-beside h3{
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: 700;
  font-family: 'Lato', sans-serif;
  letter-spacing: 1px;
  margin: 0;
@@ -110,6 +112,7 @@
 
 .list-of-place p {
   margin: 0;
+  padding: 0 .75rem 0 .75rem;
   padding-bottom: 0.5rem;
   letter-spacing: 1px;
 }
@@ -132,9 +135,48 @@
 }
 
 
+/* MEDIA QUERIES */
 
+@media (max-width: 1050px) {
+  .map-logo h1 {
+    font-size: 1.2rem;
+  }
+  .current-location button {
+    font-size: 1rem;
+    width: 5rem;
+  }
+  .searchBar button {
+    display: block;
+    margin: 0 auto;
+  }
+  .list-of-place h3, p {
+    font-size: 1rem;
+  }
+  .searchBar input {
+    width: 90%;
+  }
+  input {
+    font-size: 1rem;
+  }
+}
 
-
+@media (max-width: 500px) {
+  .map-logo h1{
+    font-size: .9rem;
+    letter-spacing: 0;
+  }
+  .current-location button {
+    font-size: 0rem;
+    width: 2.5rem;
+    padding-top: 0;
+  }
+  .list-of-place {
+    width: 12rem;
+  }
+  .searchBar button{
+    font-size: 1rem;
+  }
+}
 
 
 
