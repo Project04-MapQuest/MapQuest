@@ -27,7 +27,7 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 	// create function so on search click following function will call
 	const getBaseAddress = () => {
 		clearMarkers()
-		baseLocationName();
+		// baseLocationName();
 	}
 	// CALLING FUNCTION TO GET LIST OF PLACE 
 	const findLocation = () => {
@@ -59,15 +59,15 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 		})
 	}
 
-	// sorting addres depending on direction select
-	const getAddressOnDirectionClick = (e, placeID) => {
-		listOfPlace.forEach((data) => {
-			if (data.id === placeID) {
-				const { street, city, stateCode } = data.place.properties
-				const placeAddress = `${street}, ${city}, ${stateCode}`;
-			}
-		})
-	}
+	// // sorting addres depending on direction select
+	// const getAddressOnDirectionClick = (e, placeID) => {
+	// 	listOfPlace.forEach((data) => {
+	// 		if (data.id === placeID) {
+	// 			const { street, city, stateCode } = data.place.properties
+	// 			const placeAddress = `${street}, ${city}, ${stateCode}`;
+	// 		}
+	// 	})
+	// }
 
 	// adding route on page by clicking get direction button
 	const getDirection = (start, end) => {
