@@ -22,12 +22,12 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		findLocation()
-		getAddressOnDirectionClick();
+		// getAddressOnDirectionClick();
 	}
 	// create function so on search click following function will call
 	const getBaseAddress = () => {
 		clearMarkers()
-		// baseLocationName();
+		baseLocationName();
 	}
 	// CALLING FUNCTION TO GET LIST OF PLACE 
 	const findLocation = () => {
