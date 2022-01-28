@@ -1,7 +1,11 @@
+// import useState
 import { useState } from 'react';
-
+// import axios
 import axios from 'axios'; 
+// import fontAwsome icons here
 import { FaSearch, FaDirections } from "react-icons/fa";
+// import styling 
+import "../App.css"
 
 
 
@@ -18,17 +22,15 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		findLocation()
-		// getData()
+		getAddressOnDirectionClick();
 	}
-	
+	// create function so on search click following function will call
 	const getBaseAddress = () => {
 		clearMarkers()
 		baseLocationName();
 	}
-
+	// CALLING FUNCTION TO GET LIST OF PLACE 
 	const findLocation = () => {
-
-		if (clearMarkers) clearMarkers()
 		axios({
 			url: 'https://www.mapquestapi.com/search/v4/place',
 			dataResponse: 'json',
@@ -41,33 +43,34 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 				q: query
 			}
 		}).then((res) => {
-			console.log('data', res);
-			const listOfPlace = res.data.results
-			console.log(listOfPlace.length)
+			const listOfPlace = res.data.results;
+			// ERROR HANDLING MESSAGE LOGIC
 			if (listOfPlace.length < 1) {
 				setShowError(true)
 			}else{
 				setShowError(false)
 			}
-
 			setListOfPlace(listOfPlace)
+			// ADDING MARKER ON PAGE WHERE SEARCH IS FOUND
 			listOfPlace.forEach((data) => {
 				const listOfPlaces = data.place.geometry.coordinates;
 				addMarker(listOfPlaces[1], listOfPlaces[0])
 			})
 		})
 	}
-	// const getData = (e, placeID) => {
-	// 	listOfPlace.forEach((data) => {
-	// 		if (data.id === placeID) {
-	// 			const { street, city, stateCode } = data.place.properties
-	// 			const placeAddress = `${street}, ${city}, ${stateCode}`;
-	// 		}
-	// 	})
-	// }
 
+	// sorting addres depending on direction select
+	const getAddressOnDirectionClick = (e, placeID) => {
+		listOfPlace.forEach((data) => {
+			if (data.id === placeID) {
+				const { street, city, stateCode } = data.place.properties
+				const placeAddress = `${street}, ${city}, ${stateCode}`;
+			}
+		})
+	}
+
+	// adding route on page by clicking get direction button
 	const getDirection = (start, end) => {
-
 
 		const directions = window.L.mapquest.directions()
 		directions.setLayerOptions({
@@ -90,12 +93,12 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 				}
 			},
 			routeRibbon: {
-				color: "#ff9d7f",
+				color: "#5bc5ff",
 				opacity: 1.0,
 				showTraffic: false
 			}
 		});
-
+		//  start to end direction.
 		directions.route({
 			start: start,
 			end: end
@@ -104,36 +107,33 @@ const Search = ({  addMarker, clearMarkers, baseLocationName, currentAddress }) 
 
 	return (
 		<div>
-
 			<form className='searchBar' onSubmit={handleSubmit}>
-				<label htmlFor="query">Search:</label>
+				<label htmlFor="query" className='sr-only'>Search</label>
 				<input
 					type="search"
 					id='query'
-					placeholder='Search...'
+					placeholder='Search'
 					defaultValue={query}
 					onChange={handleChange}
 				/>
-				<button type='submit' onClick={getBaseAddress} disabled={!query.length}><FaSearch /></button>
+				<button className='search-btn' type='submit' onClick={getBaseAddress} disabled={!query.length}><FaSearch /></button>
 				{showError &&
 					<p>Data Not available</p>
 				}
-
 			</form>
-			<div>
+			<div className='list-of-place-section'>
 				<ul>
 					{
 					listOfPlace.map((place) => {
-						return (
-							<li key={place.id} >
-								<h3>{place.name}</h3>
-								<p>{place.place.properties.street}, {place.place.properties.city}, {place.place.properties.stateCode}</p>
-	<button className='directionsButton' onClick={() => getDirection(currentAddress, `${place.place.properties.street}, ${place.place.properties.city}, ${place.place.properties.stateCode}`)}><FaDirections /></button>
-
-							</li>
-						)
-					})
-					}
+					return (
+					<li key={place.id} className='list-of-place' >
+						<div className='button-beside'>
+							<h3>{place.name}</h3>
+							<button className='directionsButton' onClick={() => getDirection(currentAddress, `${place.place.properties.street}, ${place.place.properties.city}, ${place.place.properties.stateCode}`)}><FaDirections /></button>
+						</div>
+						<p>{place.place.properties.street}, {place.place.properties.city}, {place.place.properties.stateCode}</p>
+					</li>
+					)})}
 				</ul>
 			</div>
 		</div>
