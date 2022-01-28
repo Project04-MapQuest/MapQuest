@@ -12,7 +12,7 @@ const DisplayMap = ({ height, width, center, tileLayer, zoom, apiKey}) => {
 			zoom
 		})
 		map.addControl(window.L.mapquest.control())
-	},[center])
+	},[])
 	
 	return (
 		<div id='map' style={{ width, height }}>
